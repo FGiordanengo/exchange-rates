@@ -16,8 +16,7 @@ function updateRate() {
 
 function processConvert() {
     var formElement = document.querySelector('.userInput form');
-    
-    formElement.addEventListener('submit', function(event) {
+    formElement.addEventListener('onchange', function(event) {
         event.preventDefault();
 
         //On récupère la valeur du formulaire
@@ -36,25 +35,27 @@ function processConvert() {
         var fromValueElement = document.querySelector(".result .fromValue");
         var toValueElement = document.querySelector(".result .toValue");
 
-        function roundDecimal(nombre, precision){
-            var precision = precision || 2;
-            var tmp = Math.pow(10, precision);
-            return Math.round( nombre*tmp )/tmp;
-        }
+        
 
         fromValueElement.innerHTML = value + '€ ';
         toValueElement.innerHTML = ' $' + roundDecimal(result, 2);
     })
 }
 
+function roundDecimal(nombre, precision){
+    var precision = precision || 2;
+    var tmp = Math.pow(10, precision);
+    return Math.round( nombre*tmp )/tmp;
+}
+
 function autoRefresh(sec) {
     setTimeout(function(){
-        window.location.reload(1);
+        updateRate();
      }, sec);
 }
 // Onclick doit rafraichir la page
 function reloadButton() {
-    document.location.reload(true);
+    updateRate();
 }
 var refreshButton = document.querySelector('.userInput input[name=reload]');
 refreshButton.addEventListener("click", reloadButton);
@@ -62,4 +63,4 @@ refreshButton.addEventListener("click", reloadButton);
 //--------
 updateRate();
 processConvert();
-autoRefresh(30000);
+autoRefresh(3000);
