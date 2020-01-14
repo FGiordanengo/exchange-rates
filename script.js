@@ -15,6 +15,16 @@ function updateRate() {
     request.send();
 }
 
+// function getValue() {
+//     //On récupère la valeur du formulaire
+//     var valueElement = document.querySelector(".userInput input[name=inputValue]");
+//     // console.log(valueElement.value);
+//     //propriété .value permet de récupérer la valeur du sélecteur ciblé
+//     var value = valueElement.value
+//     if(!value) {
+//         value = 1;
+//     }
+// }
 function processConvert() {
     //On récupère la valeur du formulaire
     var valueElement = document.querySelector(".userInput input[name=inputValue]");
@@ -59,6 +69,19 @@ function reloadButton() {
 }
 var refreshButton = document.querySelector('.userInput input[name=reload]');
 refreshButton.addEventListener("click", reloadButton);
+
+
+function incremente() {
+    var valueElement = document.querySelector(".userInput input[name=inputValue]");
+    valueIncrement = valueElement.value++;
+}
+
+function decremente() {
+    var valueElement = document.querySelector(".userInput input[name=inputValue]");
+    valueIncrement = valueElement.value--;
+}
+// valueIncrement.addEventListener("click", incremente);
+
 
 //--------
 updateRate();
