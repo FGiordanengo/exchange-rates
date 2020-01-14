@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="style.css">
     <title>Convertisseur de monnaie</title>
 </head>
 <body>
-   
-    
+    <header>
+        <h1>Convertisseur de monnaie</h1>
+        <p class="result">
+            <span class="label a11y">Valeur saisie :</span>
+            <span class="fromValue">12.5€</span><i class="fa fa-arrow-right"></i>
+
+            <span class="label a11y">Résultat :</span>
+            <span class="toValue">$10.5</span></p>
+        </p>
+    </header>
+
+    <section class="userInput">
+        <form>
+            <input type="number" name ="inputValue">
+            <input type="submit" value="Convertir">
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2019</p>
+    </footer>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
