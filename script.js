@@ -1,3 +1,20 @@
+var rate = 0;
+console.log("debut");
+var request = new XMLHttpRequest();
+request.open("GET", "https://api.exchangeratesapi.io/latest");
+
+request.addEventListener("load", function(event) {
+    var dataText = event.target.responseText;
+    var data = JSON.parse(dataText);
+
+    rate = data.rates.USD;
+
+    var element = document.querySelector(".userInput");
+    element.classList.remove("disabled");
+});
+request.send();
+console.log("apres");
+
 var formElement = document.querySelector('.userInput form');
 formElement.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -10,8 +27,7 @@ formElement.addEventListener('submit', function(event) {
     if(!value) {
         value = 1;
     }
-    
-    var rate = 1.11;
+
     result = value * rate;
     // console.log(result);
 
@@ -29,3 +45,4 @@ formElement.addEventListener('submit', function(event) {
 
     
 })
+console.log("fin")
