@@ -16,7 +16,7 @@ function updateRate() {
 
 function processConvert() {
     var formElement = document.querySelector('.userInput form');
-    formElement.addEventListener('change', function(event) {
+    formElement.addEventListener('input', function(event) {
         event.preventDefault();
 
         //On récupère la valeur du formulaire
