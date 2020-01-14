@@ -87,3 +87,10 @@ footer {
     background-repeat: no-repeat;
     background-size: 4em;
 }
+
+p {
+    background-color: #cccccc;
+    text-align: center;
+    padding: 1em;
+    text-transform: uppercase;
+}

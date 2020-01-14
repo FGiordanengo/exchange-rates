@@ -10,6 +10,7 @@ function updateRate() {
 
         var element = document.querySelector(".userInput");
         element.classList.remove("disabled");
+        processConvert();
     });
     request.send();
 }
@@ -28,7 +29,8 @@ function processConvert() {
     result = value * rate;
     // console.log(result);
     var fromValueElement = document.querySelector(".result .fromValue");
-    var toValueElement = document.querySelector(".result .toValue");     
+    var toValueElement = document.querySelector(".result .toValue");   
+      
     //Affichage des valeurs
     fromValueElement.innerHTML = value + '€ ';
     toValueElement.innerHTML = ' $' + roundDecimal(result, 2);
