@@ -15,32 +15,30 @@ function updateRate() {
 }
 
 function processConvert() {
-    var formElement = document.querySelector('.userInput form');
+    //On récupère la valeur du formulaire
+    var valueElement = document.querySelector(".userInput input[name=inputValue]");
+    // console.log(valueElement.value);
+    //propriété .value permet de récupérer la valeur du sélecteur ciblé
+    var value = valueElement.value
+    if(!value) {
+        value = 1;
+    }
+
+    //Calcul
+    result = value * rate;
+    // console.log(result);
+    var fromValueElement = document.querySelector(".result .fromValue");
+    var toValueElement = document.querySelector(".result .toValue");     
+    //Affichage des valeurs
+    fromValueElement.innerHTML = value + '€ ';
+    toValueElement.innerHTML = ' $' + roundDecimal(result, 2);
+}
+
+var formElement = document.querySelector('.userInput form');
     formElement.addEventListener('input', function(event) {
         event.preventDefault();
-
-        //On récupère la valeur du formulaire
-        var valueElement = document.querySelector(".userInput input[name=inputValue]");
-        // console.log(valueElement.value);
-        //propriété .value permet de récupérer la valeur du sélecteur ciblé
-        var value = valueElement.value
-
-        if(!value) {
-            value = 1;
-        }
-
-        result = value * rate;
-        // console.log(result);
-
-        var fromValueElement = document.querySelector(".result .fromValue");
-        var toValueElement = document.querySelector(".result .toValue");
-
-        
-
-        fromValueElement.innerHTML = value + '€ ';
-        toValueElement.innerHTML = ' $' + roundDecimal(result, 2);
+        processConvert();
     })
-}
 
 function roundDecimal(nombre, precision){
     var precision = precision || 2;
