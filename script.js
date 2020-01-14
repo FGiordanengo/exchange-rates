@@ -7,6 +7,10 @@ formElement.addEventListener('submit', function(event) {
     //propriété .value permet de récupérer la valeur du sélecteur ciblé
     var value = valueElement.value
 
+    if(!value) {
+        value = 1;
+    }
+    
     var rate = 1.11;
     result = value * rate;
     // console.log(result);
@@ -20,7 +24,7 @@ formElement.addEventListener('submit', function(event) {
         return Math.round( nombre*tmp )/tmp;
     }
 
-    fromValueElement.innerHTML = value + ' € ';
+    fromValueElement.innerHTML = value + '€ ';
     toValueElement.innerHTML = ' $' + roundDecimal(result, 2);
 
     
