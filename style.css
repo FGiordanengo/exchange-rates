@@ -61,8 +61,23 @@ footer {
     right: 0;
     text-align: center;
 }
+/* 
+.userInput {
+    transition: all 0.5s;
+    margin-top: 0em;
+    padding-top: 0em;
+    opacity: 1;
+} */
 
-.disabled {
+.userInput.disabled {
     opacity: 0.3;
     pointer-events: none;
+
+    margin: 1em;
+    padding: 3.5em;
+
+    background-image: url(img/load.gif);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 4em;
 }
