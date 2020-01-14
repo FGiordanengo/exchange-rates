@@ -46,6 +46,12 @@ header {
     font-size: 1.2em;
 }
 
+.userInput input[type=text] {
+    background-color: #60c3f7;
+    box-sizing: content-box;
+    font-size: 1.2em;
+}
+
 .result .toValue {
     background-image: url(img/arrow.png);
     background-size: 1em;
