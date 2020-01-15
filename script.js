@@ -74,11 +74,16 @@ refreshButton.addEventListener("click", reloadButton);
 function incremente() {
     var valueElement = document.querySelector(".userInput input[name=inputValue]");
     valueIncrement = valueElement.value++;
+    updateRate();
 }
 
 function decremente() {
     var valueElement = document.querySelector(".userInput input[name=inputValue]");
-    valueIncrement = valueElement.value--;
+    valueDecrement = valueElement.value;
+    if(valueDecrement > 0) {
+        valueDecrement = valueElement.value--;
+    }
+    updateRate();
 }
 // valueIncrement.addEventListener("click", incremente);
 
