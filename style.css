@@ -118,3 +118,25 @@ span {
     vertical-align: middle;
     text-align: center;
 }
+
+.currencies {
+    margin: 1em;
+}
+.currencies .currency {
+    display: inline;
+    padding: 0.5em;
+    background-color: #ccc;
+
+}
+
+.currencies .currency {
+    cursor: pointer;
+	transition: all 0.2s;
+}
+
+.currency.selected {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    top: -0.5em;
+}

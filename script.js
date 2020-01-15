@@ -1,50 +1,11 @@
-function updateRate() {
-    var request = new XMLHttpRequest();
-    request.open("GET", "https://api.exchangeratesapi.io/latest");
+var rate;
+var rates = [];
+var currentCurrency = "USD";
+var currentSymbol = "$";
 
-    request.addEventListener("load", function(event) {
-        var dataText = event.target.responseText;
-        var data = JSON.parse(dataText);
+updateRateWebService();
 
-        rate = data.rates.USD;
-
-        var element = document.querySelector(".userInput");
-        element.classList.remove("disabled");
-        processConvert();
-    });
-    request.send();
-}
-
-// function getValue() {
-//     //On récupère la valeur du formulaire
-//     var valueElement = document.querySelector(".userInput input[name=inputValue]");
-//     // console.log(valueElement.value);
-//     //propriété .value permet de récupérer la valeur du sélecteur ciblé
-//     var value = valueElement.value
-//     if(!value) {
-//         value = 1;
-//     }
-// }
-function processConvert() {
-    //On récupère la valeur du formulaire
-    var valueElement = document.querySelector(".userInput input[name=inputValue]");
-    // console.log(valueElement.value);
-    //propriété .value permet de récupérer la valeur du sélecteur ciblé
-    var value = valueElement.value
-    if(!value) {
-        value = 1;
-    }
-
-    //Calcul
-    result = value * rate;
-    // console.log(result);
-    var fromValueElement = document.querySelector(".result .fromValue");
-    var toValueElement = document.querySelector(".result .toValue");   
-      
-    //Affichage des valeurs
-    fromValueElement.innerHTML = value + '€ ';
-    toValueElement.innerHTML = ' $' + roundDecimal(result, 2);
-}
+processConvert();
 
 var formElement = document.querySelector('.userInput form');
     formElement.addEventListener('input', function(event) {
@@ -52,43 +13,79 @@ var formElement = document.querySelector('.userInput form');
         processConvert();
     })
 
-function roundDecimal(nombre, precision){
-    var precision = precision || 2;
-    var tmp = Math.pow(10, precision);
-    return Math.round( nombre*tmp )/tmp;
-}
+autoRefresh(3000);
 
-function autoRefresh(sec) {
-    setTimeout(function(){
-        updateRate();
-     }, sec);
-}
 // Onclick doit rafraichir la page
-function reloadButton() {
-    updateRate();
-}
+reloadButton();
+
 var refreshButton = document.querySelector('.userInput input[name=reload]');
 refreshButton.addEventListener("click", reloadButton);
 
+//----------------------- USD --------------------
+// Je cible l'element <li>
+var usdElement = document.querySelector('.currencies .currency-USD');
+// Je cible le l'attribut USD
+var getUsdCurrency = usdElement.getAttribute('data-currency');
+var getUsdSymbol = usdElement.getAttribute('data-symbol');
 
-function incremente() {
-    var valueElement = document.querySelector(".userInput input[name=inputValue]");
-    valueIncrement = valueElement.value++;
-    updateRate();
-}
-
-function decremente() {
-    var valueElement = document.querySelector(".userInput input[name=inputValue]");
-    valueDecrement = valueElement.value;
-    if(valueDecrement > 0) {
-        valueDecrement = valueElement.value--;
+// Je mets un evenement click sur mon element <li> et je défini ce qu'il va faire
+usdElement.addEventListener("click", function() {
+    // On enleve la classe selected associée au dernier élément sélectionné
+    var selectedOldElement = document.querySelector('.selected');
+    if(selectedOldElement) {
+        selectedOldElement.classList.remove('selected');
     }
-    updateRate();
-}
-// valueIncrement.addEventListener("click", incremente);
+        // On applique la classe selected à l'élément sélectionné
+    this.classList.add("selected");
 
+    currentCurrency = getUsdCurrency;
+    currentSymbol = getUsdSymbol;
+    updateRateWebService();
+})
 
-//--------
-updateRate();
-processConvert();
-autoRefresh(3000);
+//----------------------- YEN --------------------
+// Je cible l'element <li>
+var yenElement = document.querySelector('.currencies .currency-JPY');
+// Je cible le l'attribut JPY
+var getYenCurrency = yenElement.getAttribute('data-currency');
+var getYenSymbol = yenElement.getAttribute('data-symbol');
+
+// Je mets un evenement click sur mon element <li> et je défini ce qu'il va faire
+yenElement.addEventListener("click", function() {
+    // On enleve la classe selected associée au dernier élément sélectionné
+    var selectedOldElement = document.querySelector('.selected');
+    if(selectedOldElement) {
+        selectedOldElement.classList.remove('selected');
+    }
+        // On applique la classe selected à l'élément sélectionné
+    this.classList.add("selected");
+
+    currentCurrency = getYenCurrency;
+    currentSymbol = getYenSymbol;
+    updateRateWebService();
+})
+
+//----------------------- PHP --------------------
+// Je cible l'element <li>
+var phpElement = document.querySelector('.currencies .currency-PHP');
+// Je cible le l'attribut JPY
+var getPhpCurrency = phpElement.getAttribute('data-currency');
+var getPhpSymbol = phpElement.getAttribute('data-symbol');
+
+// Je mets un evenement click sur mon element <li> et je défini ce qu'il va faire
+phpElement.addEventListener("click", function() {
+    // On enleve la classe selected associée au dernier élément sélectionné
+    var selectedOldElement = document.querySelector('.selected');
+
+    if(selectedOldElement) {
+        
+        selectedOldElement.classList.remove('selected');
+    }
+    console.log(selectedOldElement);
+        // On applique la classe selected à l'élément sélectionné
+    this.classList.add("selected");
+
+    currentCurrency = getPhpCurrency;
+    currentSymbol = getPhpSymbol;
+    updateRateWebService();
+})
